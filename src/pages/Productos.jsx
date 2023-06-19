@@ -7,7 +7,7 @@ import { ItemProducto } from "../ui/components/ItemProducto";
 export const Productos = () => {
   return (
     <>
-      <div className="search-logout">
+      <div className="flex-space-between">
         <InputSearch />
         <ButtonLogout />
       </div>
