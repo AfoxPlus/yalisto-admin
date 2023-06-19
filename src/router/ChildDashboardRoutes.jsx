@@ -1,11 +1,11 @@
 import { Navigate } from "react-router-dom";
-import { Letrero, Platos, Productos } from "../pages";
+import { Letrero, NuevoProducto, Platos, Productos } from "../pages";
 import { AgregarPlato } from "../pages/AgregarPlato";
 
 export const ChildDashboardRoutes = [
     {
         index: true,
-        element: <Navigate to={'/letrero'}/>
+        element: <Navigate to={'/productos'}/>
     },
     {
         path: "/letrero",
@@ -22,5 +22,9 @@ export const ChildDashboardRoutes = [
     {
         path: "/agregarPlato",
         element: <AgregarPlato/>
+    },
+    {
+        path: "/nuevoProducto",
+        element: <NuevoProducto/>
     },
 ]

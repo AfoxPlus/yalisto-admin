@@ -6,7 +6,7 @@ export const DashBoardRoutes = () => {
   return (
     <div className='container-dashboard'>
         <Navbar/> 
-        <div>
+        <div className='container'>
             <Outlet/>
         </div>
     </div>

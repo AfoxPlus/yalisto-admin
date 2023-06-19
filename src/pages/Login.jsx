@@ -33,7 +33,7 @@ export function Login() {
           value={inputValue}
           onChange={onChange}
         />
-        {showErrorMessage && <Message mensaje={"Campos Incompletos"} />}
+        {showErrorMessage && <Message mensaje={"Campo Incompleto"} />}
         <button onClick={onclick} className="login-btn">
           Entrar
         </button>
