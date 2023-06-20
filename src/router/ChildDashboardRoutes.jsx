@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { Letrero, NuevoProducto, Platos, Productos } from "../pages";
+import { EditarProducto, Letrero, NuevoProducto, Platos, Productos } from "../pages";
 import { AgregarPlato } from "../pages/AgregarPlato";
 
 export const ChildDashboardRoutes = [
@@ -26,5 +26,9 @@ export const ChildDashboardRoutes = [
     {
         path: "/nuevoProducto",
         element: <NuevoProducto/>
+    },
+    {
+        path: "/editarProducto",
+        element: <EditarProducto/>
     },
 ]

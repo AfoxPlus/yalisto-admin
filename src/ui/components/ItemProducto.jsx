@@ -1,6 +1,12 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio, cantidad, enAplicativo}) => {
+
+  const editarProducto = () => {
+    
+  }
+
   return (
     <tr>
     <td>{id}</td>
@@ -48,7 +54,7 @@ export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio,
           </svg>
         )}
 
-        <button className="btn-edit">
+        <Link to={"/editarProducto"} className="btn-edit" onClick={editarProducto}>
           <svg
             width="24"
             height="25"
@@ -61,8 +67,8 @@ export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio,
               fill="black"
             />
           </svg>
-        </button>
-        <button className="btn-delete">
+        </Link>
+        <Link className="btn-delete">
           <svg
             width="24"
             height="25"
@@ -99,7 +105,7 @@ export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio,
               </clipPath>
             </defs>
           </svg>
-        </button>
+        </Link>
       </div>
     </td>
   </tr>
