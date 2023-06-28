@@ -58,5 +58,5 @@ export const productos = [
         precio: 15.20,
         cantidad: 5,
         enAplicativo: true
-    },
+    }
 ]
