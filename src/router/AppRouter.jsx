@@ -6,17 +6,19 @@ import { DashBoardRoutes } from './DashBoardRoutes';
 import { PrivateRouter } from './PrivateRouter';
 import { PublicRouter } from './PublicRouter';
 
-const router = createBrowserRouter([
-    {
-        path: "/login",
-        element: <PublicRouter> <Login/> </PublicRouter>
-    },
-    {
-        path: "/",
-        element: <PrivateRouter> <DashBoardRoutes/> </PrivateRouter>,
-        children: ChildDashboardRoutes
-    }
-])
+const routes = [
+  {
+    path: "/login",
+    element: <PublicRouter> <Login/> </PublicRouter>
+},
+{
+    path: "/",
+    element: <PrivateRouter> <DashBoardRoutes/> </PrivateRouter>,
+    children: ChildDashboardRoutes
+}
+]
+
+const router = createBrowserRouter(routes, { basename: import.meta.env.DEV ? '/' : '/web-admin-yalisto/' })
 
 
 export const AppRouter = () => {
