@@ -76,7 +76,7 @@ export const Navbar = () => {
           <p>Productos</p>
         </NavLink>
 
-        <NavLink
+        {/* <NavLink
           id="link_letrero"
           className={({ isActive }) => `link ${isActive ? "isActive" : ""}`}
           to={"/letrero"}
@@ -128,7 +128,7 @@ export const Navbar = () => {
             />
           </svg>
           <p>Platos</p>
-        </NavLink>
+        </NavLink> */}
       </div>
     </nav>
   );

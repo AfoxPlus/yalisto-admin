@@ -3,15 +3,17 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from '../pages';
 import { ChildDashboardRoutes } from './ChildDashboardRoutes';
 import { DashBoardRoutes } from './DashBoardRoutes';
+import { PrivateRouter } from './PrivateRouter';
+import { PublicRouter } from './PublicRouter';
 
 const router = createBrowserRouter([
     {
         path: "/login",
-        element: <Login/>
+        element: <PublicRouter> <Login/> </PublicRouter>
     },
     {
         path: "/",
-        element: <DashBoardRoutes/>,
+        element: <PrivateRouter> <DashBoardRoutes/> </PrivateRouter>,
         children: ChildDashboardRoutes
     }
 ])
