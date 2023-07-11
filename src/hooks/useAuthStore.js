@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { clearErrorMessage, onChecking, onLogin, onLogout } from '../../store/auth/authSlice'
-import restaurantApi from '../../api/restaurantAPI'
+import {restaurantApi} from '../../api/restaurantAPI'
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth)

@@ -1,18 +1,19 @@
 import axios from 'axios'
 import { getEnvVariables } from '../src/helpers'
 
-const { VITE_API_RESTAURANT_URL } = getEnvVariables()
+const { VITE_API_RESTAURANT_URL, VITE_API_PRODUCTS_URL } = getEnvVariables()
 
-const restaurantApi = axios.create({
+export const restaurantApi = axios.create({
     baseURL: VITE_API_RESTAURANT_URL
 })
 
-restaurantApi.interceptors.request.use( config => {
+export const productsApi = axios.create({
+    baseURL: VITE_API_PRODUCTS_URL
+})
+
+productsApi.interceptors.request.use( config => {
     config.headers = {
         'restaurant_code': localStorage.getItem('restaurant_code')
     }
     return config
 })
-
-
-export default restaurantApi

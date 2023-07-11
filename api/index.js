@@ -1,1 +1,1 @@
-export { default as restaurantApi } from './restaurantAPI'
+export * from './restaurantAPI'

@@ -3,8 +3,18 @@ import { Link } from "react-router-dom";
 import { ButtonAdd, ButtonLogout, InputSearch } from "../ui/components";
 import { productos } from "../api/data";
 import { ItemProducto } from "../ui/components/ItemProducto";
+import { useProductStore } from "../hooks";
+import { useEffect } from "react";
 
 export const Productos = () => {
+
+  const {startLoadingProducts} = useProductStore()
+
+  useEffect(() => {
+    startLoadingProducts()
+  }, [])
+  
+
   return (
     <>
       <div className="flex-space-between">
