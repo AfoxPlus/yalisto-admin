@@ -19,10 +19,6 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
-  
-# global env
-env:
-  VITE_INTERNAL: true
 
 jobs:
   # Single deploy job since we're just deploying
@@ -41,12 +37,9 @@ jobs:
           cache: "npm"
       - name: Install dependencies
         run: npm install
-      - name: Create .env file
-        run: |
-          cat > .env << EOF
-          VITE_API_RESTAURANT_URL = https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant
-          EOF
       - name: Build
+        env: 
+          VITE_API_RESTAURANT_URL: https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant
         run: npm run build
       - name: Setup Pages
         uses: actions/configure-pages@v3
