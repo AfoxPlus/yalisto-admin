@@ -35,13 +35,11 @@ jobs:
         with:
           node-version: 18
           cache: "npm"
-      - name: Install dependencies
-        run: npm install
       - name: Create .env file
         run: |
-          cat > .env.production << EOF
-          VITE_API_RESTAURANT_URL = https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant
-          EOF
+          echo VITE_API_RESTAURANT_URL = https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant >> .env.production          
+      - name: Install dependencies
+        run: npm install
       - name: Build
         run: npm run build
       - name: Setup Pages
