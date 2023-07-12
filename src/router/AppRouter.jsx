@@ -3,18 +3,22 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login } from '../pages';
 import { ChildDashboardRoutes } from './ChildDashboardRoutes';
 import { DashBoardRoutes } from './DashBoardRoutes';
+import { PrivateRouter } from './PrivateRouter';
+import { PublicRouter } from './PublicRouter';
 
-const router = createBrowserRouter([
-    {
-        path: "/login",
-        element: <Login/>
-    },
-    {
-        path: "/",
-        element: <DashBoardRoutes/>,
-        children: ChildDashboardRoutes
-    }
-])
+const routes = [
+  {
+    path: "/login",
+    element: <PublicRouter> <Login/> </PublicRouter>
+},
+{
+    path: "/",
+    element: <PrivateRouter> <DashBoardRoutes/> </PrivateRouter>,
+    children: ChildDashboardRoutes
+}
+]
+
+const router = createBrowserRouter(routes, { basename: import.meta.env.DEV ? '/' : '/web-admin-yalisto/' })
 
 
 export const AppRouter = () => {

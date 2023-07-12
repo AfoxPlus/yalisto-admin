@@ -1,8 +1,13 @@
 import React from 'react'
+import { useAuthStore } from '../../hooks'
 
 export const ButtonLogout = () => {
+
+  const { startLogout } = useAuthStore();
+
+
   return (
-    <button className="logout">
+    <button className="logout" onClick={startLogout}>
     <svg
       width="24"
       height="25"
