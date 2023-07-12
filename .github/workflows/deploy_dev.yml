@@ -37,7 +37,7 @@ jobs:
           cache: "npm"
       - name: Create .env file
         run: |
-          echo VITE_API_RESTAURANT_URL = https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant >> .env.production          
+          echo VITE_API_RESTAURANT_URL = https://3rc0fxqgwk.execute-api.us-east-1.amazonaws.com/dev/restaurant >> .env          
       - name: Install dependencies
         run: npm install
       - name: Build
