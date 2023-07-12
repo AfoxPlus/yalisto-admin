@@ -18,7 +18,7 @@ const routes = [
 }
 ]
 
-const router = createBrowserRouter(routes, { basename: import.meta.env.DEV ? '/' : '/web-admin-yalisto/' })
+const router = createBrowserRouter(routes, { basename: import.meta.env.DEV ? '/' : '/yalisto-admin/' })
 
 
 export const AppRouter = () => {
