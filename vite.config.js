@@ -9,7 +9,7 @@ export default defineConfig(({ command }) => {
   }
 
   if (command !== 'serve') {
-    config.base = '/web-admin-yalisto/'
+    config.base = '/yalisto-admin/'
   }
 
   return config
