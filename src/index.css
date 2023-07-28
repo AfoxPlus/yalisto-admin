@@ -468,27 +468,19 @@ td:nth-child(8) {
   font-size: 1.4rem;
 }
 
-.guardar-cancelar button:nth-child(2){
-  background-color: #FAFBFF;
-  color: var(--color_principal);
-}
-
-/* Btn-Regresar */
-.btn-regresar{
-  margin: auto;
-  border-radius: 1rem;
-  width: 15rem;
-  height: 5rem;
-  display: flex;
-  justify-content: center;
+.guardar-cancelar a{
   align-items: center;
-  background-color: #fff;
-  text-decoration: none;
+  background-color: #FAFBFF;
+  border-radius: 8px;
   color: var(--color_principal);
-  text-transform: uppercase;
-  font-size: 1.5rem;
+  display: flex;
   font-family: var(--fuente_poppins);
-  border: solid 1px var(--color_principal);
+  font-size: 1.4rem;
+  font-weight: 600;
+  height: 3.2rem;
+  justify-content: center;
+  text-decoration: none;
+  width: 10.8rem;
 }
 
 /* Spinner Loader */

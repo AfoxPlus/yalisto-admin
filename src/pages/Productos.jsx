@@ -5,10 +5,11 @@ import { useEffect } from "react";
 
 export const Productos = () => {
 
-  const {products, startLoadingProducts} = useProductStore()
+  const {products, startLoadingProducts, setActiveProduct} = useProductStore()
 
   useEffect(() => {
     startLoadingProducts()
+    setActiveProduct(null)
   }, [])
   
 

@@ -1,71 +1,78 @@
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { useForm, useProductStore } from "../../hooks";
+import { useProductStore } from "../../hooks";
 import { useProductTypesStore } from "../../hooks/useProductTypesStore";
 
-let newProductFields = {
-  code: '',
-  name: '',
-  description: '',
-  imageUrl: '',
-  stock: '',
-  price: '',
-  productType: '',
-  showInApp: false
-}
-
 export const FormProducto = ({textButton}) => {
+
+  const navigate = useNavigate()
+
   const { productTypes, startLoadingProductTypes } = useProductTypesStore()
   const { startCreateProduct, startUpdateProduct, activeProduct  } = useProductStore()
   
   useEffect(() => {
     startLoadingProductTypes()
-    console.log('ejecutandose');
   }, [])
   
-  console.log(activeProduct);
+  const [productValues, setProductValues] = useState({
+    code: activeProduct?.code || '' ,
+    name: activeProduct?.name || '' ,
+    description: activeProduct?.description ||'',
+    imageUrl: activeProduct?.imageUrl || '',
+    stock: activeProduct?.stock || '',
+    price: activeProduct?.price || '',
+    productType: activeProduct?.productType.code || '',
+    showInApp: activeProduct?.showInApp || false
+  })
 
-  let {onInputChange, onResetForm, onInputChangeCheckBox, name, description, imageUrl, stock, price, productType, showInApp, code } =  useForm(newProductFields);
+  const onInputChange = ({ target }) => {
+    const { name, value } = target;
+    setProductValues({
+        ...productValues,
+        [ name ]: value
+    });
+}
+
+const onInputChangeCheckBox = ({target})=>{
+    const {name, checked} = target;
+    console.log(checked);
+    setProductValues({
+        ...productValues,
+        [name]:checked
+    })
+}
+
   
     if (textButton==='Actualizar') {
         if (activeProduct===null){        
-            Swal.fire('Error', 'No existen datos para editar, Dirigirse a la página de inicio', "error");
-            return <Link className="btn-regresar" to={'/productos'}>Ir a productos</Link>
+            // navigate('/productos')
+            return <Navigate to={'/productos'}/>
         }
-
-          code = activeProduct.code
-          name = activeProduct.name
-          description = activeProduct.description
-          imageUrl = activeProduct.imageUrl
-          stock = activeProduct.stock
-          productType = activeProduct.productType.code
-          price = activeProduct.price
-          showInApp = activeProduct.showInApp
-          console.log(activeProduct.showInApp); 
-
     }
 
   const newProductSubmit = async(e) => {
     e.preventDefault();
-    if (productType.length === 0 || name.length < 4 || imageUrl.length < 5 || price.length <= 0 || stock <= 0) {
+    if (productValues.productType.length === 0 || productValues.name.length < 4 || productValues.imageUrl.length < 5 || productValues.price.length <= 0 || productValues.stock <= 0) {
       Swal.fire('Datos Incompletos', 'Complete los datos requeridos', "warning")
       return;
     }
 
-    await startCreateProduct({name, description, imageUrl, stock, price, showInApp, productType})
-    // console.log({name, description, imageUrl, stock, price, showInApp, productType});
+    await startCreateProduct(productValues)
+    //* Validar si se registro el producto correctamente
+    Swal.fire('Registro Exitoso', 'El producto se ha registrado correctamente.', "success")
+    // Navega hacia la pagina de productos
+    navigate('/productos')
   }
 
   const editProductSubmit = async(e) => {
     e.preventDefault();
-    if (productType.length === 0 || name.length < 4 || imageUrl.length < 5 || price.length <= 0 || stock <= 0) {
+    if (productValues.productType.length === 0 || productValues.name.length < 4 || productValues.imageUrl.length < 5 || productValues.price.length <= 0 || productValues.stock <= 0) {
       Swal.fire('Datos Incompletos', 'Complete los datos requeridos', "warning")
       return;
     }
-    await startUpdateProduct({name, description, imageUrl, stock, price, showInApp, productType})
+    await startUpdateProduct(productValues)
+    // await startUpdateProduct({name, description, imageUrl, stock, price, showInApp, productType})
   }
 
   return (
@@ -73,7 +80,7 @@ export const FormProducto = ({textButton}) => {
       <form onSubmit={(textButton==='Guardar') ? newProductSubmit : editProductSubmit} className="form">
         <div className="tipo">
           <label htmlFor="">Tipo</label>
-          <select name="productType" id="tipo" onChange={onInputChange}>
+          <select name="productType" id="tipo" onChange={onInputChange} value={productValues.productType}>
           <option key={-1} value=''>Seleccione una opción</option>
             {
               productTypes.map(({id, name}) => (
@@ -89,7 +96,7 @@ export const FormProducto = ({textButton}) => {
           <input 
             type="text" 
             name="name" 
-            value={name} 
+            value={productValues.name} 
             onChange={onInputChange} 
           />
         </div>
@@ -99,7 +106,7 @@ export const FormProducto = ({textButton}) => {
           <textarea
             name="description"
             id="descripcion"
-            value={description}
+            value={productValues.description}
             onChange={onInputChange}
             cols="30"
             rows="10"
@@ -111,7 +118,7 @@ export const FormProducto = ({textButton}) => {
           <input 
             type="text" 
             name="imageUrl"
-            value={imageUrl}
+            value={productValues.imageUrl}
             onChange={onInputChange}
             />
         </div>
@@ -122,7 +129,7 @@ export const FormProducto = ({textButton}) => {
             type="text" 
             name="price" 
             id="precio" 
-            value={price}
+            value={productValues.price}
             onChange={onInputChange}
           />
         </div>
@@ -133,7 +140,7 @@ export const FormProducto = ({textButton}) => {
             type="text" 
             name="stock" 
             id="cantidad" 
-            value={stock}
+            value={productValues.stock}
             onChange={onInputChange}
           />
         </div>
@@ -142,14 +149,14 @@ export const FormProducto = ({textButton}) => {
           <input 
             type="checkbox" 
             name="showInApp"
-            checked={showInApp}
+            checked={productValues.showInApp}
             onChange={onInputChangeCheckBox}
           />
           <label htmlFor="">Mostrar en el Aplicativo</label>
         </div>
         <div className="guardar-cancelar">
           <button type="submit">{textButton}</button>
-          <button type="button" onClick={onResetForm}>Cancelar</button>
+          <Link to={'/productos'}>Cancelar</Link>
         </div>
       </form>
     </div>
