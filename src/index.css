@@ -473,6 +473,24 @@ td:nth-child(8) {
   color: var(--color_principal);
 }
 
+/* Btn-Regresar */
+.btn-regresar{
+  margin: auto;
+  border-radius: 1rem;
+  width: 15rem;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  text-decoration: none;
+  color: var(--color_principal);
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-family: var(--fuente_poppins);
+  border: solid 1px var(--color_principal);
+}
+
 /* Spinner Loader */
 .container-spinner{
   height: 100vh;

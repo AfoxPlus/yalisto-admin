@@ -11,9 +11,9 @@ export const productsApi = axios.create({
     baseURL: VITE_API_PRODUCTS_URL
 })
 
-productsApi.interceptors.request.use( config => {
-    config.headers = {
-        'restaurant_code': localStorage.getItem('restaurant_code')
-    }
-    return config
-})
+// productsApi.interceptors.request.use( config => {
+//     config.headers = {
+//         'restaurant_code': localStorage.getItem('restaurant_code')
+//     }
+//     return config
+// })

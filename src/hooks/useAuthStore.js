@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../../store/auth/authSlice'
+import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
 import {restaurantApi} from '../../api/restaurantAPI'
+import { onLogoutProducts } from '../store/products/productsSlice'
+import { onLogoutProductTypes } from '../store/products/productTypesSlice'
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth)
@@ -34,6 +36,8 @@ export const useAuthStore = () => {
     const startLogout = ()=> {
         localStorage.clear()
         dispatch(onLogout())
+        dispatch(onLogoutProducts())
+        dispatch(onLogoutProductTypes())
     }
 
     const checkAuthToken = async() =>{
