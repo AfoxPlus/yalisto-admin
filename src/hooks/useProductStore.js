@@ -28,7 +28,8 @@ export const useProductStore = () => {
     const startCreateProduct = async(product) => {
         try {
             console.log(product);
-            // // ?restaurant_code=648f94bd704db9741d1d2c04
+            
+            // ?restaurant_code=648f94bd704db9741d1d2c04
             // const resp = await productsApi.post('', product, {
             //     params: {
             //         restaurant_code: localStorage.getItem('restaurant_code')

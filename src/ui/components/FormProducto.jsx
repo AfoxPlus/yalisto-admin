@@ -60,6 +60,7 @@ const onInputChangeCheckBox = ({target})=>{
 
     await startCreateProduct(productValues)
     //* Validar si se registro el producto correctamente
+    
     Swal.fire('Registro Exitoso', 'El producto se ha registrado correctamente.', "success")
     // Navega hacia la pagina de productos
     navigate('/productos')
