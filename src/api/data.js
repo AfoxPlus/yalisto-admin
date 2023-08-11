@@ -49,4 +49,24 @@ export const productos = [
         cantidad: 5,
         enAplicativo: true
     },
+    {
+        id: '#AHGA72',
+        tipo: 'Menu',
+        nombre: 'Cabrito norteño',
+        descripcion: 'Acompañado con su ensalada y refresco',
+        imagen_URL: 'https://s3.amazon/imagen.jpg',
+        precio: 15.20,
+        cantidad: 5,
+        enAplicativo: true
+    },
+    {
+        id: '#AHGA72',
+        tipo: 'Menu',
+        nombre: 'Cabrito norteño',
+        descripcion: 'Acompañado con su ensalada y refresco',
+        imagen_URL: 'https://s3.amazon/imagen.jpg',
+        precio: 15.20,
+        cantidad: 5,
+        enAplicativo: true
+    }
 ]
