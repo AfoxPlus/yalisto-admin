@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { productsApi } from '../../api/restaurantAPI'
+import { productsApi,productGateway } from '../../api/restaurantAPI'
 import { onCreateProduct, onLoadProducts, onSetActiveProduct } from "../store/products/productsSlice";
 
 export const useProductStore = () => {
@@ -12,7 +12,7 @@ export const useProductStore = () => {
 
     const startLoadingProducts = async() => {
         try {
-            // /search?restaurant_code=648f94bd704db9741d1d2c04
+            //search?restaurant_code=648f94bd704db9741d1d2c04
             const {data} = await productsApi.get('/search', {
                 params: {
                     restaurant_code: localStorage.getItem('restaurant_code')
@@ -26,14 +26,19 @@ export const useProductStore = () => {
     }
 
     const startCreateProduct = async(product) => {
-        try {
-            console.log(product);
-            // ?restaurant_code=648f94bd704db9741d1d2c04
-             const resp = await productsApi.post('', product, {
-                 params: {
-                     restaurant_code: localStorage.getItem('restaurant_code')
-                 }
-             })    
+        try {     
+            console.log("LOG_VALE -----------------")  
+                const newProduct = {
+                    name: product.name,
+                    description: product.description,
+                    imageUrl: product.imageUrl,
+                    stock: product.stock,
+                    price: product.price,
+                    productType: product.productType,
+                    showInApp: true
+                }
+             const resp = await productGateway.post('', newProduct)    
+             console.log(resp)
              dispatch(onCreateProduct(product))
              console.log(resp);
         } catch (error) {
@@ -42,11 +47,7 @@ export const useProductStore = () => {
     }
 
     const startUpdateProduct = async(product) => { 
-        try {
-            console.log(product);
-        } catch (error) {
-            
-        }
+       console.log(product)
     }
 
     return {
