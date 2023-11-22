@@ -22,7 +22,7 @@ export const useProductStore = () => {
 
     const startCreateProduct = async(product) => {
         try {
-             const resp = await yaListoGateway.post('product', product)    
+             const resp = await yaListoGateway.post('products', product)    
              console.log(resp)
              dispatch(onCreateProduct(product))
         } catch (error) {
