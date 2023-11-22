@@ -1,1 +1,1 @@
-export * from './restaurantAPI'
+export * from './yaListoAPI'

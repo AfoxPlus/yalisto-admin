@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { productsApi,productGateway } from '../../api/restaurantAPI'
+import { yaListoGateway } from '../../api/yaListoAPI'
 import { onCreateProduct, onLoadProducts, onSetActiveProduct } from "../store/products/productsSlice";
 
 export const useProductStore = () => {
@@ -12,12 +12,7 @@ export const useProductStore = () => {
 
     const startLoadingProducts = async() => {
         try {
-            //search?restaurant_code=648f94bd704db9741d1d2c04
-            const {data} = await productsApi.get('/search', {
-                params: {
-                    restaurant_code: localStorage.getItem('restaurant_code')
-                }
-            })
+            const {data} = await yaListoGateway.get('products/search')
             dispatch(onLoadProducts(data.payload))
 
         } catch (error) {
@@ -26,21 +21,10 @@ export const useProductStore = () => {
     }
 
     const startCreateProduct = async(product) => {
-        try {     
-            console.log("LOG_VALE -----------------")  
-                const newProduct = {
-                    name: product.name,
-                    description: product.description,
-                    imageUrl: product.imageUrl,
-                    stock: product.stock,
-                    price: product.price,
-                    productType: product.productType,
-                    showInApp: true
-                }
-             const resp = await productGateway.post('', newProduct)    
+        try {
+             const resp = await yaListoGateway.post('product', product)    
              console.log(resp)
              dispatch(onCreateProduct(product))
-             console.log(resp);
         } catch (error) {
             console.log(error);
         }        
