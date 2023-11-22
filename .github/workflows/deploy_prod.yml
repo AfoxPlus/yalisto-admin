@@ -4,7 +4,7 @@ on:
   # Runs on pushes targeting the default branch
   push:
     branches:
-      - 'master'
+      - "master"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -37,8 +37,7 @@ jobs:
           cache: "npm"
       - name: Create .env file
         run: |
-          echo VITE_API_RESTAURANT_URL=https://4qg2nayfoi.execute-api.us-east-1.amazonaws.com/prod/restaurant >> .env
-          
+          echo VITE_YALISTO_GATEWAY=https://0r48b5s9c8.execute-api.us-east-1.amazonaws.com/live >> .env
       - name: Install dependencies
         run: npm install
       - name: Build

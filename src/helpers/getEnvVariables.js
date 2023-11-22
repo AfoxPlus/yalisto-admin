@@ -1,7 +1,7 @@
 export const getEnvVariables = () => {
 
     return {
-        ...import.meta.env
+        VITE_YALISTO_GATEWAY: import.meta.env.VITE_YALISTO_GATEWAY
     }
 
 }

@@ -468,9 +468,19 @@ td:nth-child(8) {
   font-size: 1.4rem;
 }
 
-.guardar-cancelar button:nth-child(2){
+.guardar-cancelar a{
+  align-items: center;
   background-color: #FAFBFF;
+  border-radius: 8px;
   color: var(--color_principal);
+  display: flex;
+  font-family: var(--fuente_poppins);
+  font-size: 1.4rem;
+  font-weight: 600;
+  height: 3.2rem;
+  justify-content: center;
+  text-decoration: none;
+  width: 10.8rem;
 }
 
 /* Spinner Loader */
