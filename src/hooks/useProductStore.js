@@ -25,7 +25,6 @@ export const useProductStore = () => {
         try {
             const {data} = await yaListoGateway.get('products/search')
             dispatch(onLoadProducts(data.payload))
-
         } catch (error) {
             console.log(error);
         }
@@ -33,8 +32,8 @@ export const useProductStore = () => {
 
     const startCreateProduct = async(product) => {
         try {
-             const resp = await yaListoGateway.post('products', product)
-             dispatch(onCreateProduct(resp))
+             const {data} = await yaListoGateway.post('products', product)
+             dispatch(onCreateProduct(data))
         } catch (error) {
             console.log(error);
         }        
@@ -42,8 +41,8 @@ export const useProductStore = () => {
 
     const startUpdateProduct = async(product) => { 
         try {
-            const resp = await yaListoGateway.put('products', product)    
-            dispatch(onUpdateProduct(resp))
+            const {data} = await yaListoGateway.put('products', product)
+            dispatch(onUpdateProduct(data))
        } catch (error) {
            console.log(error);
        }  

@@ -19,13 +19,13 @@ export const productsSlice = createSlice({
                 }                
             });
         },
-        onCreateProduct: (state, {payload}) => {
-            state.products.push(payload)
+        onCreateProduct: (state, {data}) => {
+            state.products.push(data.payload)
             state.activeProduct = null;
         },
         onUpdateProduct: (state, {payload}) => {
-            var itemIndex = state.products.findIndex(x => x.code == payload.code)
-            state.products[itemIndex] = {...payload}
+            var itemIndex = state.products.findIndex(x => x.code == payload.payload.code)
+            state.products[itemIndex] = {...payload.payload}
             state.activeProduct = null;
         },
         onLogoutProducts: (state) => {
