@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { clearErrorMessage, onChecking, onLogin, onLogout } from '../../store/auth/authSlice'
-import restaurantApi from '../../api/restaurantAPI'
+import { clearErrorMessage, onChecking, onLogin, onLogout } from '../store/auth/authSlice'
+import {yaListoGateway} from '../../api/yaListoAPI'
+import { onLogoutProducts } from '../store/products/productsSlice'
+import { onLogoutProductTypes } from '../store/products/productTypesSlice'
 
 export const useAuthStore = () => {
     const { status, user, errorMessage } = useSelector(state => state.auth)
@@ -10,7 +12,7 @@ export const useAuthStore = () => {
         dispatch(onChecking())
 
         try {
-            const { data } = await restaurantApi.post('/auth', {key})
+            const { data } = await yaListoGateway.post('/auth', {key})
             const { payload, success, message } = data
 
             if (success) {
@@ -34,6 +36,8 @@ export const useAuthStore = () => {
     const startLogout = ()=> {
         localStorage.clear()
         dispatch(onLogout())
+        dispatch(onLogoutProducts())
+        dispatch(onLogoutProductTypes())
     }
 
     const checkAuthToken = async() =>{

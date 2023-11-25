@@ -1,28 +1,40 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import {Link} from 'react-router-dom'
+import { useProductStore } from '../../hooks'
 
-export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio, cantidad, enAplicativo}) => {
+export const ItemProducto = ({code, name, productType, description, imageUrl, price, stock, showInApp}) => {
+
+  const { setActiveProduct,handleRemoveProduct } = useProductStore()
+
+  const parseCode = () => {
+    return code.slice(0, 6).toUpperCase();
+  }
 
   const editarProducto = () => {
-    
+    setActiveProduct({code, name, productType, description, imageUrl, price, stock, showInApp})
+  }
+
+  const removeProduct = () => {
+    handleRemoveProduct(code)
   }
 
   return (
     <tr>
-    <td>{id}</td>
-    <td>{tipo}</td>
-    <td>{nombre}</td>
-    <td>{descripcion}</td>
+     <td>#{parseCode()}</td>
+    <td>{productType.name}</td>
+    <td>{name}</td>
+    <td>{description}</td>
     <td>
       <a href="#" className="url-imagen">
-        {imagen_URL}
+        {imageUrl}
       </a>
     </td>
-    <td>s/{precio}</td>
-    <td>{cantidad}</td>
+    <td>s/{price}</td>
+    <td>{stock}</td>
     <td>
       <div className="opciones">
-        {enAplicativo ? (
+        {showInApp ? (
           <svg
             width="24"
             height="24"
@@ -68,7 +80,7 @@ export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio,
             />
           </svg>
         </Link>
-        <Link className="btn-delete">
+        <Link className="btn-delete" onClick={removeProduct}>
           <svg
             width="24"
             height="25"
@@ -109,5 +121,6 @@ export const ItemProducto = ({id, tipo, nombre, descripcion, imagen_URL, precio,
       </div>
     </td>
   </tr>
+  
   )
 }

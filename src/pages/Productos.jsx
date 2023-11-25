@@ -1,10 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
 import { ButtonAdd, ButtonLogout, InputSearch } from "../ui/components";
-import { productos } from "../api/data";
 import { ItemProducto } from "../ui/components/ItemProducto";
+import { useProductStore } from "../hooks";
+import { useEffect } from "react";
 
 export const Productos = () => {
+
+  const {products, startLoadingProducts, setActiveProduct} = useProductStore()
+
+  useEffect(() => {
+    startLoadingProducts()
+    setActiveProduct(null)
+  }, [])
+  
+
+  // console.log(products);
+
   return (
     <>
       <div className="flex-space-between">
@@ -31,8 +41,8 @@ export const Productos = () => {
             </tr>
           </thead>
           <tbody>
-            {productos.map((producto) => (
-                <ItemProducto key={producto.id} {...producto}/>
+            {products.map((product) => (
+                <ItemProducto key={product.code} {...product}/>
             ))}
           </tbody>
         </table>

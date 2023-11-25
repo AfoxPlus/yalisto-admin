@@ -32,6 +32,15 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
         });
     }
 
+    const onInputChangeCheckBox = ({target})=>{
+        const {name, checked} = target;
+        console.log(checked);
+        setFormState({
+            ...formState,
+            [name]:checked
+        })
+    }
+
     const onResetForm = () => {
         setFormState( initialForm );
     }
@@ -56,6 +65,7 @@ export const useForm = ( initialForm = {}, formValidations = {}) => {
         formState,
         onInputChange,
         onResetForm,
+        onInputChangeCheckBox,
 
         ...formValidation,
         isFormValid
