@@ -73,7 +73,6 @@ const onInputChangeCheckBox = ({target})=>{
       return;
     }
     await startUpdateProduct(productValues)
-    // await startUpdateProduct({name, description, imageUrl, stock, price, showInApp, productType})
   }
 
   return (

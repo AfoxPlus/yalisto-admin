@@ -5,16 +5,18 @@ import { useProductStore } from '../../hooks'
 
 export const ItemProducto = ({code, name, productType, description, imageUrl, price, stock, showInApp}) => {
 
-  const { setActiveProduct } = useProductStore()
+  const { setActiveProduct,handleRemoveProduct } = useProductStore()
 
   const parseCode = () => {
     return code.slice(0, 6).toUpperCase();
   }
 
-
-
   const editarProducto = () => {
     setActiveProduct({code, name, productType, description, imageUrl, price, stock, showInApp})
+  }
+
+  const removeProduct = () => {
+    handleRemoveProduct(code)
   }
 
   return (
@@ -78,7 +80,7 @@ export const ItemProducto = ({code, name, productType, description, imageUrl, pr
             />
           </svg>
         </Link>
-        <Link className="btn-delete">
+        <Link className="btn-delete" onClick={removeProduct}>
           <svg
             width="24"
             height="25"
